@@ -22,12 +22,12 @@ const Counter = () => {
         <p>{count}</p>
         <div>
             <button onClick={() => dispatch(decrement())}>-</button>
-            <button onClick={() => dispatch(reset())}>reset</button>
             <button onClick={() => dispatch(increment())}>+</button>
         </div>
         <input value={amount} onChange={(e) => setAmount(e.target.value)}/>
         <div>
           <button onClick={() => dispatch(incrementByAmount(addValue))}>Add amount</button>
+          <button onClick={() => resetAll()}>reset</button>
         </div>
           
     </section>
