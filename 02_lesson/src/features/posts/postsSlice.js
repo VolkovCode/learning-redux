@@ -44,9 +44,24 @@ const postsSlice = createSlice({
                         id: nanoid(),
                         title,
                         content,
-                        userId
+                        date: new Date().toISOString(),
+                        userId,
+                        reactions: {
+                            thumbsUp: 0,
+                            wow: 0,
+                            heart: 0,
+                            rocket: 0,
+                            coffee: 0
+                        }
                     }
                 }
+            }
+        },
+        reactionAdded(state, action) {
+            const { postId, reaction } = action.payload
+            const existingPost = state.find(post => post.id === postId)
+            if (existingPost) {
+                existingPost.reactions[reaction]++
             }
         }
 
@@ -55,6 +70,6 @@ const postsSlice = createSlice({
 
 export const selectAllPosts = (state) => state.posts
 
-export const { postAdded } = postsSlice.actions
+export const { postAdded, reactionAdded } = postsSlice.actions
 
 export default postsSlice.reducer
